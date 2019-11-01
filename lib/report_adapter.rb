@@ -1,54 +1,38 @@
 # frozen_string_literal: true
 
+# https://developer.github.com/v3/checks/runs/#output-object
 class ReportAdapter
   class << self
     CONCLUSION_TYPES = { failure: 'failure', success: 'success' }.freeze
-    ANNOTATION_LEVELS = {
-      'refactor' => 'failure',
-      'convention' => 'failure',
-      'warning' => 'warning',
-      'error' => 'failure',
-      'fatal' => 'failure'
-    }.freeze
+    ANNOTATION_LEVEL = { notice: 'notice', warning: 'warning', failure: 'failure' }.freeze
 
     def conslusion(report)
-      return CONCLUSION_TYPES[:failure] if total_offenses(report).positive?
+      return CONCLUSION_TYPES[:failure] if security_warnings(report).positive?
 
       CONCLUSION_TYPES[:success]
     end
 
     def summary(report)
-      "#{total_offenses(report)} offense(s) found"
+      "**Brakeman Report**: \n - #{security_warnings(report)} security warnings"
     end
 
     def annotations(report)
-      annotation_list = []
-      count = 0
-      report['files'].each do |file|
-        file['offenses'].each do |offense|
-          count += 1
-          return annotation_list if count == 48
-
-          location = offense['location']
-          annotation_list.push(
-            'path' => file['path'],
-            'start_line' => location['start_line'],
-            'end_line' => location['last_line'],
-            'annotation_level' => annotation_level(offense['severity']),
-            'message' => offense['message']
-          )
-        end
+      report['warnings'].map do |error|
+        {
+          'path' => error['file'],
+          'start_line' => error['line'],
+          'end_line' => error['line'],
+          'annotation_level' => ANNOTATION_LEVEL[:warning],
+          'title' => "#{error['confidence']} - #{error['check_name']}",
+          'message' => error['message']
+        }
       end
     end
 
     private
 
-    def annotation_level(severity)
-      ANNOTATION_LEVELS[severity]
-    end
-
-    def total_offenses(report)
-      report.dig('summary', 'offense_count')
+    def security_warnings(report)
+      report['scan_info']['security_warnings']
     end
   end
 end

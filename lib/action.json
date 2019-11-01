@@ -1,8 +1,8 @@
 {
   "repository": {
     "owner": {
-      "login": "andrewmcodes"
-    }
-    ,"name": "rubocop-linter"
+      "login": "devmasx"
+    },
+    "name": "brakeman-linter"
   }
 }

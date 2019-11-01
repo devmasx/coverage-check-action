@@ -1,32 +1,31 @@
-# frozen_string_literal: true
-
 require './spec/spec_helper'
 
 describe ReportAdapter do
-  let(:rubocop_report) do
-    JSON(File.read('./spec/fixtures/report.json'))
-  end
+  let(:brakeman_report) {
+    JSON(File.read('./spec/fixtures/input.json'))
+  }
 
   let(:adapter) { ReportAdapter }
 
   it '.conslusion' do
-    result = adapter.conslusion(rubocop_report)
+    result = adapter.conslusion(brakeman_report)
     expect(result).to eq('failure')
   end
 
   it '.summary' do
-    result = adapter.summary(rubocop_report)
-    expect(result).to eq('201 offense(s) found')
+    result = adapter.summary(brakeman_report)
+    expect(result).to be_a(String)
   end
 
   it '.annotations' do
-    result = adapter.annotations(rubocop_report)
-    expect(result.first).to eq(
-      'path' => 'Gemfile',
-      'start_line' => 1,
-      'end_line' => 1,
-      'annotation_level' => 'failure',
-      'message' => 'Missing magic comment `# frozen_string_literal: true`.'
-    )
+    result = adapter.annotations(brakeman_report)
+    expect(result).to eq([{
+      'path' => 'app/controllers/posts_controller.rb',
+      'start_line' => 17,
+      'annotation_level' => 'warning',
+      'end_line' => 17,
+      'title' => 'High - MassAssignment',
+      'message' => 'Parameters should be whitelisted for mass assignment'
+    }])
   end
 end

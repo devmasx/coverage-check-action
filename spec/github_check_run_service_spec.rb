@@ -1,11 +1,9 @@
-# frozen_string_literal: true
-
 require './spec/spec_helper'
 
 describe GithubCheckRunService do
-  let(:rubocop_report) { JSON(File.read('./spec/fixtures/report.json')) }
+  let(:brakeman_report) { JSON(File.read('./spec/fixtures/input.json')) }
   let(:github_data) { { sha: 'sha', token: 'token', owner: 'owner', repo: 'repository_name' } }
-  let(:service) { GithubCheckRunService.new(rubocop_report, github_data, ReportAdapter) }
+  let(:service) { GithubCheckRunService.new(brakeman_report, github_data, ReportAdapter) }
 
   it '#run' do
     stub_request(:any, 'https://api.github.com/repos/owner/repository_name/check-runs/id')
@@ -17,4 +15,5 @@ describe GithubCheckRunService do
     output = service.run
     expect(output).to be_a(Hash)
   end
+
 end
