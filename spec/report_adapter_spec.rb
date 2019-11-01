@@ -4,7 +4,15 @@ require './spec/spec_helper'
 
 describe ReportAdapter do
   let(:brakeman_report) do
-    JSON(File.read('./spec/fixtures/input.json'))
+    JSON(File.read('./spec/fixtures/report.json'))
+  end
+
+  let(:spec_annotations) do
+    JSON(File.read('./spec/fixtures/output/annotations.json'))
+  end
+
+  let(:spec_summary) do
+    File.read('./spec/fixtures/output/summary.md')
   end
 
   let(:adapter) { ReportAdapter }
@@ -16,18 +24,11 @@ describe ReportAdapter do
 
   it '.summary' do
     result = adapter.summary(brakeman_report)
-    expect(result).to be_a(String)
+    expect(result).to eq(spec_summary)
   end
 
   it '.annotations' do
     result = adapter.annotations(brakeman_report)
-    expect(result).to eq([{
-      'path' => 'app/controllers/posts_controller.rb',
-      'start_line' => 17,
-      'annotation_level' => 'warning',
-      'end_line' => 17,
-      'title' => 'High - MassAssignment',
-      'message' => 'Parameters should be whitelisted for mass assignment'
-    }])
+    expect(result).to eq(spec_annotations)
   end
 end
