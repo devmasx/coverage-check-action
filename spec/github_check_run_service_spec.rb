@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './spec/spec_helper'
 
 describe GithubCheckRunService do
@@ -15,5 +17,4 @@ describe GithubCheckRunService do
     output = service.run
     expect(output).to be_a(Hash)
   end
-
 end

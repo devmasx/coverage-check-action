@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require './spec/spec_helper'
 
 describe ReportAdapter do
-  let(:brakeman_report) {
+  let(:brakeman_report) do
     JSON(File.read('./spec/fixtures/input.json'))
-  }
+  end
 
   let(:adapter) { ReportAdapter }
 
