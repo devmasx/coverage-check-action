@@ -1,0 +1,9 @@
+name: "Brakeman linter"
+description: "A GitHub Action that lints your Ruby code with Brakeman!"
+author: Miguel Savignano
+runs:
+  using: "docker"
+  image: "Dockerfile"
+branding:
+  icon: "code"
+  color: "red"
