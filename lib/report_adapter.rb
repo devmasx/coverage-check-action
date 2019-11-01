@@ -13,7 +13,7 @@ class ReportAdapter
     end
 
     def summary(report)
-      "**Brakeman Report**: \n - #{security_warnings(report)} security warnings"
+      "**Brakeman Report**: \n - #{security_warnings(report)} security warnings\n #{check_table(report)}"
     end
 
     def annotations(report)
@@ -30,6 +30,14 @@ class ReportAdapter
     end
 
     private
+
+    def check_table(report)
+      uniq_checks(report).reduce('') { |memo, check| memo + " - [#{check[:check_name]}](#{check[:link]})" }
+    end
+
+    def uniq_checks(report)
+      report['warnings'].map { |w| { check_name: w['check_name'], link: w['link'] } }.uniq { |w| w[:checkname] }
+    end
 
     def security_warnings(report)
       report['scan_info']['security_warnings']
