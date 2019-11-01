@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GithubCheckRunService
-  CHECK_NAME = 'Rubocop'
+  CHECK_NAME = 'Brakeman'
 
   def initialize(report, github_data, report_adapter)
     @report = report
