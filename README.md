@@ -1,5 +1,8 @@
 ## Brakeman github action
 
+Brakeman is a static analysis tool which checks Ruby on Rails applications for security vulnerabilities.
+[See more](https://github.com/presidentbeef/brakeman)
+
 ### Usage
 
 ```yml
