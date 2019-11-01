@@ -3,7 +3,7 @@
 require './spec/spec_helper'
 
 describe GithubCheckRunService do
-  let(:brakeman_report) { JSON(File.read('./spec/fixtures/input.json')) }
+  let(:brakeman_report) { JSON(File.read('./spec/fixtures/report.json')) }
   let(:github_data) { { sha: 'sha', token: 'token', owner: 'owner', repo: 'repository_name' } }
   let(:service) { GithubCheckRunService.new(brakeman_report, github_data, ReportAdapter) }
 

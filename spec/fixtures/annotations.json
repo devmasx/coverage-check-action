@@ -1,0 +1,34 @@
+[
+  {
+    "path": "app/controllers/posts_controller.rb",
+    "start_line": 29,
+    "end_line": 29,
+    "annotation_level": "warning",
+    "title": "High - Evaluation",
+    "message": "User input in eval"
+  },
+  {
+    "path": "app/controllers/posts_controller.rb",
+    "start_line": 18,
+    "end_line": 18,
+    "annotation_level": "warning",
+    "title": "High - MassAssignment",
+    "message": "Parameters should be whitelisted for mass assignment"
+  },
+  {
+    "path": "app/controllers/posts_controller.rb",
+    "start_line": 19,
+    "end_line": 19,
+    "annotation_level": "warning",
+    "title": "High - MassAssignment",
+    "message": "Parameters should be whitelisted for mass assignment"
+  },
+  {
+    "path": "app/controllers/posts_controller.rb",
+    "start_line": 13,
+    "end_line": 13,
+    "annotation_level": "warning",
+    "title": "Medium - SQL",
+    "message": "Possible SQL injection"
+  }
+]
