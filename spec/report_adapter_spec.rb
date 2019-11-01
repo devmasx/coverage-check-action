@@ -8,7 +8,11 @@ describe ReportAdapter do
   end
 
   let(:spec_annotations) do
-    JSON(File.read('./spec/fixtures/annotations.json'))
+    JSON(File.read('./spec/fixtures/output/annotations.json'))
+  end
+
+  let(:spec_summary) do
+    File.read('./spec/fixtures/output/summary.md')
   end
 
   let(:adapter) { ReportAdapter }
@@ -20,7 +24,7 @@ describe ReportAdapter do
 
   it '.summary' do
     result = adapter.summary(brakeman_report)
-    expect(result).to be_a(String)
+    expect(result).to eq(spec_summary)
   end
 
   it '.annotations' do
