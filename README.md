@@ -27,3 +27,8 @@ Brakeman is a static analysis tool which checks Ruby on Rails applications for s
     GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
     REPORT_PATH: tmp/brakeman.json
 ```
+
+## Screenshots
+
+![example GitHub Action UI](./screenshots/action.png)
+![example Pull request](./screenshots/pull_request.png)
