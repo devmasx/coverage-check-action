@@ -19,6 +19,7 @@ class ReportAdapter
     end
 
     private
+
     def table_head
       "| Type  | covered | minimum |\n| ----- | ------- | ------- |"
     end
