@@ -7,7 +7,7 @@ Check your coverage minimum coverage percentage.
 #### [Simplecov](https://github.com/colszowka/simplecov)
 
 ```yml
-- uses: devmasx/coverage-check-action@coverage-check
+- uses: devmasx/coverage-check-action@v1.0.0
   with:
     result_path: coverage/.last_run.json
     token: ${{secrets.GITHUB_TOKEN}}
