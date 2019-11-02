@@ -15,16 +15,16 @@ end
 @event_json = read_json(ENV['GITHUB_EVENT_PATH']) if ENV['GITHUB_EVENT_PATH']
 @github_data = {
   sha: ENV['GITHUB_SHA'],
-  token: ENV['INPUT_TOKEN'],
+  token: ENV['TOKEN'],
   owner: ENV['GITHUB_REPOSITORY_OWNER'] || @event_json.dig('repository', 'owner', 'login'),
   repo: ENV['GITHUB_REPOSITORY_NAME'] || @event_json.dig('repository', 'name')
 }
 
-@coverage_type = ENV['INPUT_TYPE']
-@report_path = ENV['INPUT_RESULT_PATH']
-puts 'INPUT_RESULT_PATH'
+@coverage_type = ENV['TYPE']
+@report_path = ENV['RESULT_PATH']
+puts 'RESULT_PATH'
 puts @report_path
-@data = { min: ENV['INPUT_MIN_COVERAGE'] }
+@data = { min: ENV['MIN_COVERAGE'] }
 
 @report = CoverageReport.generate(@coverage_type, @report_path, @data)
 
