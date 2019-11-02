@@ -1,9 +1,24 @@
 name: "Brakeman linter"
 description: "A GitHub Action that lints your Ruby code with Brakeman!"
 author: Miguel Savignano
-runs:
-  using: "docker"
-  image: "Dockerfile"
 branding:
   icon: "check-square"
   color: "red"
+inputs:
+  type:
+    description: "simplecov | jest"
+    required: true
+    default: "simplecov"
+  token:
+    description: "Github token for create checks"
+    required: true
+    default: "World"
+  min_coverage:
+    description: "Minimum coverage"
+    default: "80"
+  result_path:
+    description: "Json with coverage result"
+    required: true
+runs:
+  using: "docker"
+  image: "Dockerfile"
