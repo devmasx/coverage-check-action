@@ -1,34 +1,21 @@
 ## Brakeman github action
 
-Brakeman is a static analysis tool which checks Ruby on Rails applications for security vulnerabilities.
-[See more](https://github.com/presidentbeef/brakeman)
+Check your coverage percentage.
 
 ### Usage
 
-```yml
-- name: Brakeman
-  uses: devmasx/brakeman-linter-action@v1.0.0
-  env:
-    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-```
-
-### Custom report
+#### [Simplecov](https://github.com/colszowka/simplecov)
 
 ```yml
-- name: Install gems
-  run: |
-    gem install brakeman -v 4.5.0
-- name: brakeman report
-  run: |
-    brakeman -f json > tmp/brakeman.json || exit 0
-- name: Brakeman
-  uses: devmasx/brakeman-linter-action@v1.0.0
-  env:
-    GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
-    REPORT_PATH: tmp/brakeman.json
+- uses: devmasx/coverage-check-action@coverage-check
+  with:
+    result_path: coverage/.last_run.json
+    token: ${{secrets.GITHUB_TOKEN}}
+    type: simplecov
+    min_coverage: 90
 ```
 
 ## Screenshots
 
-![example GitHub Action UI](./screenshots/action.png)
-![example Pull request](./screenshots/pull_request.png)
+![Success](./screenshots/success.png)
+![Fail](./screenshots/fail.png)
