@@ -3,7 +3,6 @@
 source 'https://rubygems.org'
 
 group :development do
-  gem 'brakeman'
   gem 'rubocop'
 end
 

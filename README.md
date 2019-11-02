@@ -1,6 +1,6 @@
-## Brakeman github action
+## Coverage check
 
-Check your coverage percentage.
+Check your coverage minimum coverage percentage.
 
 ### Usage
 

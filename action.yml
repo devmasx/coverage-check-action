@@ -1,9 +1,9 @@
-name: "Brakeman linter"
-description: "A GitHub Action that lints your Ruby code with Brakeman!"
+name: "Coverage check"
+description: "A GitHub Action that check minimum coverage percentage!"
 author: Miguel Savignano
 branding:
   icon: "check-square"
-  color: "red"
+  color: "green"
 inputs:
   type:
     description: "simplecov | jest"
