@@ -12,16 +12,22 @@ class CoverageReport
   end
 
   def self.simplecov(report_path, data)
-    report = JSON.parse(File.read(report_path))
+    report = read_json(report_path)
     minumum_percent = data[:min]
     covered_percent = report.dig('result', 'covered_percent')
     { 'lines' => { 'covered_percent' => covered_percent, 'minumum_percent' => minumum_percent } }
   end
 
   def self.jest(report_path, data)
-    report = JSON.parse(File.read(report_path))
+    report = read_json(report_path)
     minumum_percent = data[:min]
     covered_percent = report.dig('result', 'covered_percent')
     { 'lines' => { 'covered_percent' => covered_percent, 'minumum_percent' => minumum_percent } }
+  end
+
+  private
+
+  def read_json(path)
+    JSON.parse(File.read(path))
   end
 end
