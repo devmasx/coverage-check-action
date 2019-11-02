@@ -1,6 +1,6 @@
 ## Coverage check
 
-Check your coverage minimum coverage percentage.
+A GitHub Action that check minimum coverage percentage!
 
 ### Usage
 
