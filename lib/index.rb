@@ -22,8 +22,6 @@ end
 
 @coverage_type = ENV['INPUT_TYPE']
 @report_path = ENV['INPUT_RESULT_PATH']
-puts 'INPUT_RESULT_PATH'
-puts @report_path
 @data = { min: ENV['INPUT_MIN_COVERAGE'] }
 
 @report = CoverageReport.generate(@coverage_type, @report_path, @data)
