@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 class GithubCheckRunService
-  CHECK_NAME = 'Brakeman'
+  CHECK_NAME = 'Coverage'
 
   def initialize(report, github_data, report_adapter)
     @report = report
     @github_data = github_data
     @report_adapter = report_adapter
-    @client = GithubClient.new(@github_data[:token], user_agent: 'brakeman-action')
+    @client = GithubClient.new(@github_data[:token], user_agent: 'coverage-action')
   end
 
   def run
