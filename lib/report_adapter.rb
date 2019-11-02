@@ -11,7 +11,7 @@ class ReportAdapter
     end
 
     def summary(report)
-      "**Coverage**:\n\n#{table_head}\n| Lines | #{lines_covered_percent(report)}%     | #{lines_minimum_percent(report)}%     |\n#{table_footer}\n"
+      "**Coverage**:\n\n#{table_head}\n| Lines | #{lines_covered_percent(report)}%     | #{lines_minimum_percent(report)}%     |\n"
     end
 
     def annotations(_report)
@@ -21,10 +21,6 @@ class ReportAdapter
     private
     def table_head
       "| Type  | covered | minimum |\n| ----- | ------- | ------- |"
-    end
-
-    def table_footer
-      '|       |         |         |'
     end
 
     def lines_covered_percent(report)
