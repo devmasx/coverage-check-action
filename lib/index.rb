@@ -6,6 +6,7 @@ require 'time'
 require_relative './report_adapter'
 require_relative './github_check_run_service'
 require_relative './github_client'
+require_relative './coverage_report'
 
 def read_json(path)
   JSON.parse(File.read(path))
@@ -14,16 +15,15 @@ end
 @event_json = read_json(ENV['GITHUB_EVENT_PATH']) if ENV['GITHUB_EVENT_PATH']
 @github_data = {
   sha: ENV['GITHUB_SHA'],
-  token: ENV['GITHUB_TOKEN'],
+  token: ENV['INPUT_TOKEN'],
   owner: ENV['GITHUB_REPOSITORY_OWNER'] || @event_json.dig('repository', 'owner', 'login'),
   repo: ENV['GITHUB_REPOSITORY_NAME'] || @event_json.dig('repository', 'name')
 }
 
-@report =
-  if ENV['REPORT_PATH']
-    read_json(ENV['REPORT_PATH'])
-  else
-    Dir.chdir(ENV['GITHUB_WORKSPACE']) { JSON.parse(`brakeman -f json`) }
-  end
+@coverage_type = ENV['INPUT_TYPE']
+@report_path = ENV['INPUT_RESULT_PATH']
+@data = { min: ENV['INPUT_MIN_COVERAGE'] }
+
+@report = CoverageReport.generate(@coverage_type, @report_path, @data)
 
 GithubCheckRunService.new(@report, @github_data, ReportAdapter).run

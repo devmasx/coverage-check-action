@@ -3,12 +3,8 @@
 require './spec/spec_helper'
 
 describe ReportAdapter do
-  let(:brakeman_report) do
-    JSON(File.read('./spec/fixtures/report.json'))
-  end
-
-  let(:spec_annotations) do
-    JSON(File.read('./spec/fixtures/output/annotations.json'))
+  let(:report) do
+    { 'lines' => { 'covered_percent' => 80, 'minumum_percent' => 80 } }
   end
 
   let(:spec_summary) do
@@ -18,17 +14,17 @@ describe ReportAdapter do
   let(:adapter) { ReportAdapter }
 
   it '.conslusion' do
-    result = adapter.conslusion(brakeman_report)
-    expect(result).to eq('failure')
+    result = adapter.conslusion(report)
+    expect(result).to eq('success')
   end
 
   it '.summary' do
-    result = adapter.summary(brakeman_report)
+    result = adapter.summary(report)
     expect(result).to eq(spec_summary)
   end
 
   it '.annotations' do
-    result = adapter.annotations(brakeman_report)
-    expect(result).to eq(spec_annotations)
+    result = adapter.annotations(report)
+    expect(result).to eq([])
   end
 end
