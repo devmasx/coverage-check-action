@@ -7,15 +7,32 @@ class ReportAdapter
     ANNOTATION_LEVEL = { notice: 'notice', warning: 'warning', failure: 'failure' }.freeze
 
     def conslusion(report)
-      CONCLUSION_TYPES[:success]
+      lines_covered_percent(report) >= lines_minimum_percent(report).to_f ? CONCLUSION_TYPES[:success] : CONCLUSION_TYPES[:failure]
     end
 
     def summary(report)
-      "**Coverage**: #{report.dig('result', 'covered_percent')}%"
+      "**Coverage**:\n\n#{table_head}\n| Lines | #{lines_covered_percent(report)}%     | #{lines_minimum_percent(report)}%     |\n#{table_footer}\n"
     end
 
-    def annotations(report)
+    def annotations(_report)
       []
+    end
+
+    private
+    def table_head
+      "| Type  | covered | minimum |\n| ----- | ------- | ------- |"
+    end
+
+    def table_footer
+      '|       |         |         |'
+    end
+
+    def lines_covered_percent(report)
+      @lines_covered_percent ||= report.dig('lines', 'covered_percent')
+    end
+
+    def lines_minimum_percent(report)
+      @lines_minimum_percent ||= report.dig('lines', 'minumum_percent')
     end
   end
 end

@@ -3,9 +3,11 @@
 require './spec/spec_helper'
 
 describe GithubCheckRunService do
-  let(:brakeman_report) { JSON(File.read('./spec/fixtures/report.json')) }
+  let(:report) do
+    { 'lines' => { 'covered_percent' => 80, 'minumum_percent' => 80 } }
+  end
   let(:github_data) { { sha: 'sha', token: 'token', owner: 'owner', repo: 'repository_name' } }
-  let(:service) { GithubCheckRunService.new(brakeman_report, github_data, ReportAdapter) }
+  let(:service) { GithubCheckRunService.new(report, github_data, ReportAdapter) }
 
   it '#run' do
     stub_request(:any, 'https://api.github.com/repos/owner/repository_name/check-runs/id')
