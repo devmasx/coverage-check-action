@@ -5,8 +5,8 @@ class CoverageReport
     def generate(type, report_path, data)
       if type == 'simplecov'
         simplecov(report_path, data)
-      elsif type == 'jest'
-        jest(report_path, data)
+      elsif type == 'lcov'
+        lcov(report_path, data)
       else
         raise 'InvalidCoverageReportType'
       end

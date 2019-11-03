@@ -15,6 +15,17 @@ A GitHub Action that check minimum coverage percentage!
     min_coverage: 90
 ```
 
+#### Lcov
+
+```yml
+- uses: devmasx/coverage-check-action@v1.0.1
+  with:
+    result_path: coverage/example.lcov
+    token: ${{secrets.GITHUB_TOKEN}}
+    type: lcov
+    min_coverage: 90
+```
+
 ## Screenshots
 
 ![Success](./screenshots/success.png)

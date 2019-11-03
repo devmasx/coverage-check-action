@@ -6,9 +6,9 @@ branding:
   color: "green"
 inputs:
   type:
-    description: "simplecov | jest"
+    description: "lcov | simplecov"
     required: true
-    default: "simplecov"
+    default: "lcov"
   token:
     description: "Github token for create checks"
     required: true
