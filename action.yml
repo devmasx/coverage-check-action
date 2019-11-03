@@ -12,7 +12,6 @@ inputs:
   token:
     description: "Github token for create checks"
     required: true
-    default: "World"
   min_coverage:
     description: "Minimum coverage"
     default: "80"
