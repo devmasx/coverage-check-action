@@ -29,8 +29,8 @@ class CoverageReport
 
     def lcov_covered_percent(lcov_result)
       lines = lcov_result.map { |r| r['lines']['details'] }.flatten
-      total_lines = lines.count&.to_f.round(2)
-      covered_lines = lines.select { |r| r['hit'] >= 1 }.count&.to_f
+      total_lines = lines.count.to_f.round(2)
+      covered_lines = lines.select { |r| r['hit'] >= 1 }.count.to_f
       ((covered_lines / total_lines) * 100).round(2)
     end
 
