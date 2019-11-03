@@ -27,7 +27,7 @@ class CoverageReport
 
   private
 
-  def read_json(path)
+  def self.read_json(path)
     JSON.parse(File.read(path))
   end
 end
