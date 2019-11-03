@@ -7,4 +7,9 @@ describe CoverageReport do
     result = CoverageReport.simplecov('./spec/fixtures/simplecov.json', min: 80)
     expect(result['lines']['covered_percent']).to eq(80.5)
   end
+
+  it '.lcov' do
+    result = CoverageReport.lcov('./spec/fixtures/example.lcov', min: 80)
+    expect(result['lines']['covered_percent']).to eq(85.61)
+  end
 end
