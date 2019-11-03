@@ -30,12 +30,12 @@ class CoverageReport
     def lcov_covered_percent(lcov_result)
       lines = lcov_result.map { |r| r['lines']['details'] }.flatten
       total_lines = lines.count&.to_f
-      covered_lines = lines.select { |r| r['hit'] == 1 }.count&.to_f
+      covered_lines = lines.select { |r| r['hit'] >= 1 }.count&.to_f
       (covered_lines / total_lines) * 100
     end
 
     def execute_lcov_parse(report_path)
-      `node bin/lcov-parse.js #{report_path}`
+      JSON.parse(`node bin/lcov-parse.js #{report_path}`)
     end
 
     def read_json(path)

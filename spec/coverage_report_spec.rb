@@ -9,7 +9,7 @@ describe CoverageReport do
   # end
 
   it '.lcov' do
-    result = CoverageReport.lcov('./spec/fixtures/example.lcov', { min: 80 })
-    expect(result['lines']['covered_percent']).to eq('sas')
+    result = CoverageReport.lcov('./spec/fixtures/example.lcov', min: 80)
+    expect(result['lines']['covered_percent']).to eq(85.60606060606061)
   end
 end
