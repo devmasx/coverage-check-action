@@ -7,6 +7,7 @@ require_relative './report_adapter'
 require_relative './github_check_run_service'
 require_relative './github_client'
 require_relative './coverage_report'
+require_relative './lcov_parse'
 
 def read_json(path)
   JSON.parse(File.read(path))
