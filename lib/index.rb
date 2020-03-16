@@ -23,6 +23,7 @@ end
 @coverage_type = ENV['INPUT_TYPE']
 @report_path = ENV['INPUT_RESULT_PATH']
 @data = { min: ENV['INPUT_MIN_COVERAGE'] }
+puts "** #{@report_path} #{@data[:min]} #{@coverage_type}}"
 
 @report = CoverageReport.generate(@coverage_type, @report_path, @data)
 

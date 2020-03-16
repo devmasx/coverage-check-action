@@ -35,8 +35,9 @@ class CoverageReport
     end
 
     def execute_lcov_parse(report_path)
+      puts "Report path: #{report_path}"
       bin_path = "#{File.dirname(__FILE__)}/../bin"
-      JSON.parse(`node #{bin_path}/lcov-parse.js #{report_path}`)
+      JSON.parse(`node #{bin_path}/lcov-parse.js #{report_path}` || {})
     end
 
     def read_json(path)
