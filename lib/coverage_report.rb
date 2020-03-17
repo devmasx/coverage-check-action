@@ -20,9 +20,8 @@ class CoverageReport
     end
 
     def lcov(report_path, data)
-      Dir.entries '/github/workspace'
       lcov = LcovParse.new(File.read("/github/workspace/#{report_path}"))
-      { 'lines' => { 'covered_percent' => 4, 'minumum_percent' => data[:min] } }
+      { 'lines' => { 'covered_percent' => lcov.covered_percent, 'minumum_percent' => data[:min] } }
     end
 
     private
