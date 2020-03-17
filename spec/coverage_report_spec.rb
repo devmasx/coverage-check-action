@@ -10,6 +10,6 @@ describe CoverageReport do
 
   it '.lcov' do
     result = CoverageReport.lcov('./spec/fixtures/example.lcov', min: 80)
-    expect(result['lines']['covered_percent']).to eq(85.61)
+    expect(result['lines']['covered_percent']).to eq(84.85)
   end
 end
