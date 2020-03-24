@@ -43,13 +43,13 @@ class GithubCheckRunService
 
   def update_check_payload
     {
-      name: "#{CHECK_NAME} #{@percent}%",
+      name: CHECK_NAME,
       head_sha: @github_data[:sha],
       status: 'completed',
       completed_at: Time.now.iso8601,
       conclusion: @conclusion,
       output: {
-        title: CHECK_NAME,
+        title: "#{CHECK_NAME} #{@percent}%",
         summary: @summary,
         annotations: @annotations
       }
