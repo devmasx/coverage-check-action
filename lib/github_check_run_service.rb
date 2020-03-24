@@ -18,6 +18,7 @@ class GithubCheckRunService
     @summary = @report_adapter.summary(@report)
     @annotations = @report_adapter.annotations(@report)
     @conclusion = @report_adapter.conslusion(@report)
+    @percent = @report_adapter.lines_covered_percent(@report)
 
     @client.patch(
       "#{endpoint_url}/#{id}",
@@ -42,7 +43,7 @@ class GithubCheckRunService
 
   def update_check_payload
     {
-      name: CHECK_NAME,
+      name: "#{CHECK_NAME} #{@percent}%",
       head_sha: @github_data[:sha],
       status: 'completed',
       completed_at: Time.now.iso8601,
