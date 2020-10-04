@@ -18,6 +18,7 @@ class GithubCheckRunService
     @summary = @report_adapter.summary(@report)
     @annotations = @report_adapter.annotations(@report)
     @conclusion = @report_adapter.conslusion(@report)
+    @percent = @report_adapter.lines_covered_percent(@report)
 
     @client.patch(
       "#{endpoint_url}/#{id}",
@@ -48,7 +49,7 @@ class GithubCheckRunService
       completed_at: Time.now.iso8601,
       conclusion: @conclusion,
       output: {
-        title: CHECK_NAME,
+        title: "#{CHECK_NAME} #{@percent}%",
         summary: @summary,
         annotations: @annotations
       }

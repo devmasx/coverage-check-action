@@ -18,14 +18,14 @@ class ReportAdapter
       []
     end
 
+    def lines_covered_percent(report)
+      @lines_covered_percent ||= report.dig('lines', 'covered_percent')
+    end
+
     private
 
     def table_head
       "| Type  | covered | minimum |\n| ----- | ------- | ------- |"
-    end
-
-    def lines_covered_percent(report)
-      @lines_covered_percent ||= report.dig('lines', 'covered_percent')
     end
 
     def lines_minimum_percent(report)
