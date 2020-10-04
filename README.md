@@ -7,7 +7,7 @@ A GitHub Action that check minimum coverage percentage!
 #### Lcov
 
 ```yml
-- uses: devmasx/coverage-check-action@v1.1.0
+- uses: devmasx/coverage-check-action@v1.2.0
   with:
     type: lcov
     result_path: coverage/example.lcov
@@ -18,7 +18,7 @@ A GitHub Action that check minimum coverage percentage!
 #### [Simplecov](https://github.com/colszowka/simplecov)
 
 ```yml
-- uses: devmasx/coverage-check-action@v1.1.0
+- uses: devmasx/coverage-check-action@v1.2.0
   with:
     type: simplecov
     result_path: coverage/.last_run.json
