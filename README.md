@@ -2,6 +2,9 @@
 
 A GitHub Action that check minimum coverage percentage!
 
+This action requires a Github token with `checks:write` scope to allow create the check run using the Github API v3.
+But no need to generate any new token, you can use the Github action token (`${{ github.token }}`)
+
 ### Usage
 
 #### Lcov
@@ -12,7 +15,7 @@ A GitHub Action that check minimum coverage percentage!
     type: lcov
     result_path: coverage/example.lcov
     min_coverage: 90
-    token: ${{secrets.GITHUB_TOKEN}}
+    token: ${{ github.token }}
 ```
 
 #### [Simplecov](https://github.com/colszowka/simplecov)
@@ -23,7 +26,7 @@ A GitHub Action that check minimum coverage percentage!
     type: simplecov
     result_path: coverage/.last_run.json
     min_coverage: 90
-    token: ${{secrets.GITHUB_TOKEN}}
+    token: ${{ github.token }}
 ```
 
 ## Screenshots
