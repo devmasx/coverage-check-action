@@ -15,7 +15,7 @@ class CoverageReport
     def simplecov(report_path, data)
       report = read_json(report_path)
       minumum_percent = data[:min]
-      covered_percent = report.dig('result', 'covered_percent')
+      covered_percent = report.dig('result', 'line') || report.dig('result', 'covered_percent')
       { 'lines' => { 'covered_percent' => covered_percent, 'minumum_percent' => minumum_percent } }
     end
 

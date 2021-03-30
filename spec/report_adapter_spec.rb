@@ -13,8 +13,8 @@ describe ReportAdapter do
 
   let(:adapter) { ReportAdapter }
 
-  it '.conslusion' do
-    result = adapter.conslusion(report)
+  it '.conclusion' do
+    result = adapter.conclusion(report)
     expect(result).to eq('success')
   end
 
