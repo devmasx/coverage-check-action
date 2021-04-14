@@ -22,7 +22,7 @@ end
 
 @coverage_type = ENV['INPUT_TYPE']
 @report_path = ENV['INPUT_RESULT_PATH']
-@report_name: ENV['INPUT_REPORT_NAME']
+@report_name = ENV['INPUT_REPORT_NAME']
 @data = { min: ENV['INPUT_MIN_COVERAGE'] }
 
 @report = CoverageReport.generate(@coverage_type, @report_path, @data)
