@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class GithubCheckRunService
-  CHECK_NAME = 'Coverage'
+  CHECK_NAME = defined? @github_data[:name] ? @github_data[:name] : 'Coverage'
 
   def initialize(report, github_data, report_adapter)
     @report = report
