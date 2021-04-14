@@ -29,6 +29,18 @@ But no need to generate any new token, you can use the Github action token (`${{
     token: ${{ github.token }}
 ```
 
+#### Report name
+
+```yml
+- uses: devmasx/coverage-check-action@v1.2.0
+  with:
+    type: lcov
+    result_path: coverage/example.lcov
+    min_coverage: 90
+    token: ${{ github.token }}
+    report_name: "My Github Action Check Name"
+```
+
 ## Screenshots
 
 ![Success](./screenshots/success.png)
