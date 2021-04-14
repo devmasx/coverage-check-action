@@ -1,8 +1,6 @@
 # frozen_string_literal: true
 
 class GithubCheckRunService
-  CHECK_NAME = defined? @github_data[:name] ? @github_data[:name] : 'Coverage'
-
   def initialize(report, github_data, report_adapter)
     @report = report
     @github_data = github_data
@@ -34,7 +32,7 @@ class GithubCheckRunService
 
   def create_check_payload
     {
-      name: CHECK_NAME,
+      name: @report_name,
       head_sha: @github_data[:sha],
       status: 'in_progress',
       started_at: Time.now.iso8601
@@ -43,13 +41,13 @@ class GithubCheckRunService
 
   def update_check_payload
     {
-      name: CHECK_NAME,
+      name: @report_name,
       head_sha: @github_data[:sha],
       status: 'completed',
       completed_at: Time.now.iso8601,
       conclusion: @conclusion,
       output: {
-        title: "#{CHECK_NAME} #{@percent}%",
+        title: "#{@report_name} #{@percent}%",
         summary: @summary,
         annotations: @annotations
       }

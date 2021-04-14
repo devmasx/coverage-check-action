@@ -17,11 +17,12 @@ end
   sha: ENV['GITHUB_SHA'],
   token: ENV['INPUT_TOKEN'],
   owner: ENV['GITHUB_REPOSITORY_OWNER'] || @event_json.dig('repository', 'owner', 'login'),
-  repo: ENV['GITHUB_REPOSITORY_NAME'] || @event_json.dig('repository', 'name')
+  repo: ENV['GITHUB_REPOSITORY_NAME'] || @event_json.dig('repository', 'name'),
 }
 
 @coverage_type = ENV['INPUT_TYPE']
 @report_path = ENV['INPUT_RESULT_PATH']
+@report_name: ENV['INPUT_REPORT_NAME']
 @data = { min: ENV['INPUT_MIN_COVERAGE'] }
 
 @report = CoverageReport.generate(@coverage_type, @report_path, @data)
