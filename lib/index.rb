@@ -27,4 +27,4 @@ end
 
 @report = CoverageReport.generate(@coverage_type, @report_path, @data)
 
-GithubCheckRunService.new(@report, @github_data, ReportAdapter).run
+GithubCheckRunService.new(@report, @github_data, @report_name, ReportAdapter).run

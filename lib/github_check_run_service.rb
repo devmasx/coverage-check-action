@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 
 class GithubCheckRunService
-  def initialize(report, github_data, report_adapter)
+  def initialize(report, github_data, report_name, report_adapter)
     @report = report
     @github_data = github_data
+    @report_name = report_name
     @report_adapter = report_adapter
     @client = GithubClient.new(@github_data[:token], user_agent: 'coverage-action')
   end
