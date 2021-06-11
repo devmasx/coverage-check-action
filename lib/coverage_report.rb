@@ -29,8 +29,6 @@ class CoverageReport
 
     def phpunit(report_path, data)
       phpunit_result = execute_phpunit_parse(report_path)
-      puts phpunit_result
-      puts phpunit_covered_percent(phpunit_result)
       minumum_percent = data[:min]
       { 'lines' => { 'covered_percent' => phpunit_covered_percent(phpunit_result), 'minumum_percent' => minumum_percent} }
     end
@@ -58,7 +56,7 @@ class CoverageReport
       # Methods: 16.67% (107/642)  
       # Lines:   13.95% (1059/7591)
 
-      /Lines: * ([0-9\.]*)%/.match(phpunit_result)[1]
+      /Lines: * ([0-9\.]*)%/.match(phpunit_result)[1].to_f
     end
 
     def execute_phpunit_parse(report_path)
