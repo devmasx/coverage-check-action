@@ -6,7 +6,7 @@ branding:
   color: "green"
 inputs:
   type:
-    description: "lcov | simplecov"
+    description: "lcov | simplecov | phpunit"
     required: true
     default: "lcov"
   token:
