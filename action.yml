@@ -6,7 +6,7 @@ branding:
   color: "green"
 inputs:
   type:
-    description: "lcov | simplecov"
+    description: "lcov | simplecov | phpunit"
     required: true
     default: "lcov"
   token:
@@ -15,6 +15,9 @@ inputs:
   min_coverage:
     description: "Minimum coverage"
     default: "80"
+  report_name:
+    description: "Name of the github action check"
+    default: "Coverage"
   result_path:
     description: "Json with coverage result"
     required: true

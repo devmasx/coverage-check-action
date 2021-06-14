@@ -7,6 +7,8 @@ class CoverageReport
         simplecov(report_path, data)
       elsif type == 'lcov'
         lcov(report_path, data)
+      elsif type == 'phpunit'
+        phpunit(report_path, data)
       else
         raise 'InvalidCoverageReportType'
       end
@@ -25,6 +27,12 @@ class CoverageReport
       { 'lines' => { 'covered_percent' => lcov_covered_percent(lcov_result), 'minumum_percent' => minumum_percent } }
     end
 
+    def phpunit(report_path, data)
+      phpunit_result = execute_phpunit_parse(report_path)
+      minumum_percent = data[:min]
+      { 'lines' => { 'covered_percent' => phpunit_covered_percent(phpunit_result), 'minumum_percent' => minumum_percent} }
+    end
+
     private
 
     def lcov_covered_percent(lcov_result)
@@ -37,6 +45,22 @@ class CoverageReport
     def execute_lcov_parse(report_path)
       bin_path = "#{File.dirname(__FILE__)}/../bin"
       JSON.parse(`node #{bin_path}/lcov-parse.js #{report_path}`)
+    end
+
+
+    def phpunit_covered_percent(phpunit_result)
+      # example for 
+      # phpunit --coverage-text
+      # Summary:                    
+      # Classes: 10.14% (14/138)   
+      # Methods: 16.67% (107/642)  
+      # Lines:   13.95% (1059/7591)
+
+      /Lines: * ([0-9\.]*)%/.match(phpunit_result)[1].to_f
+    end
+
+    def execute_phpunit_parse(report_path)
+      File.read(report_path)
     end
 
     def read_json(path)
